@@ -25,7 +25,7 @@ SECRET_KEY = '%#y+4rnl)j=^lp10+!d%n)3h($!#y&pl@6o)^x1$)o36q+3s02'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jonjonjon.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -39,8 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'forprofile',
+    'social_django',
+    'django_social_app',
 ]
-
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.vk.VKOAuth2',          # бекенд авторизации через ВКонтакте
+    'django.contrib.auth.backends.ModelBackend', # бекенд классической аутентификации, чтобы работала авторизация через обычный логин и пароль
+)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -56,7 +61,9 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -64,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends', # Добавил эту строку
             ],
         },
     },
@@ -120,3 +128,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = '7323491'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = '5PuB4GU3U3MGuMMrtljh'
+LOGIN_REDIRECT_URL='/admin'
+
+

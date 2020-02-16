@@ -19,6 +19,10 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('forprofile.urls')),
+    # path('', include('social.apps.django_app.urls')),
+    path('', include('django_social_app.urls')),
+    path('', include('social_django.urls')),
+
 ]
 
 
