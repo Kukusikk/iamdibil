@@ -22,6 +22,7 @@ urlpatterns = [
     # path('', include('social.apps.django_app.urls')),
     path('', include('django_social_app.urls')),
     path('', include('social_django.urls')),
+    path('', include('autorization.urls')),
 
 ]
 

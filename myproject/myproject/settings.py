@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'forprofile',
     'social_django',
     'django_social_app',
+    'autorization',
 ]
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.vk.VKOAuth2',          # бекенд авторизации через ВКонтакте
